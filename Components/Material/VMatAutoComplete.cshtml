@@ -1,0 +1,14 @@
+@inherits VMatAutoCompleteCode
+
+<div class="form-group" style="@Style" id="@ID">
+    <div class="floating-label">
+        <label for="exampleFloatingLabel1">@FloatingLabelText</label>
+        <input aria-describedby="exampleFloatingLabel1Help" class="form-control" id="exampleFloatingLabel1" placeholder="@PlaceHolderText" type="text"  onchange="@HangleTextChange" value="@Text"  list="browsers"/>
+        <small id="exampleFloatingLabel1Help" class="form-text text-muted">@UnderText</small>
+        <datalist id="browsers" >
+            @foreach (EComboBoxItem eItem in ComboItems) {
+              <option data-value="@eItem.Value">@eItem.Text</option>
+           }
+        </datalist>
+    </div>
+</div>

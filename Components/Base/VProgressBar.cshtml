@@ -1,0 +1,48 @@
+﻿@inherits VItem
+
+<VRectangle ID="@(ID+"RectFrame")" 
+            Width="@Width"
+            Height="@Height"
+            BackgroundColor="@FrameBackgroundColor">
+    <VRectangle ID="@(ID+"ValueFrame")" 
+                BackgroundColor="@ValueBackgroundColor"
+                Height="100%"
+                Width="@(_value+"%")"></VRectangle>
+</VRectangle>
+
+@*<div class="progress">
+        <div class="@cssClass"
+             style="@Style"
+             role="progressbar"
+             aria-valuenow="@(_value.ToString())"
+             aria-valuemin="@(Min.ToString())"
+             aria-valuemax="@(Max.ToString())">
+            @Label
+        </div>
+    </div>*@
+
+
+
+@functions{
+    [Parameter] protected string FrameBackgroundColor { get; set; }
+    [Parameter] protected string ValueBackgroundColor { get; set; }
+
+    [Parameter] protected int Min { get; set; } = 0;
+    [Parameter] protected int Max { get; set; } = 100;
+    [Parameter] protected string Label { get; set; }
+
+    private int _value;
+    [Parameter] protected int Value { get => _value; set { if (_value == value) return; _value = value; OnValueChanged?.Invoke(value); } }
+    [Parameter] protected Action<int> OnValueChanged { get; set; }
+
+
+    //=================================FUNCTIONS BELOW=================================
+
+    #region OnParametersSet
+    protected override void OnParametersSet() {
+        base.OnParametersSet();
+        //cssDict.Add(CssHelper.Width, _value.ToString()+"%");
+        Style = Helper.ConvertDictToCssStyle(StyleDict);
+    }
+    #endregion
+}

@@ -1,0 +1,23 @@
+﻿@inherits VItem
+
+<VRectangle
+            Height="50px"
+            Width="100%"
+            Color="Gray"
+            >
+    @foreach(EToolbarItem eToolbarItem in Items) {
+        <VBootButton Height="100%"
+                     Text="@(eToolbarItem.Text)" OnClicked="(args)=>OnToolButtonClicked(eToolbarItem)"></VBootButton>
+    }
+</VRectangle>
+
+
+
+@functions{
+    [Parameter] protected List<EToolbarItem> Items { get; set; } = new List<EToolbarItem>();
+    [Parameter] protected Action<EToolbarItem> OnItemClicked { get; set; }
+
+    protected async Task OnToolButtonClicked(EToolbarItem eToolbarItem) {
+        OnItemClicked?.Invoke(eToolbarItem);
+    }
+}

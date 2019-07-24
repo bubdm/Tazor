@@ -1,0 +1,14 @@
+﻿@inherits VMatTabViewCode
+
+<CascadingValue Value="@ActiveTabPanelID">
+    <ul class="nav nav-justified nav-tabs">
+        @foreach (ETabTitle eTabTitle in TabBarTitles) {
+            <li class="nav-item">
+                <a class="@(eTabTitle.IsActive ? "nav-link active" : "nav-link")" data-toggle="tab" onclick="@(() => OnTabClicked(eTabTitle))">@eTabTitle.Text</a>
+            </li>
+        }
+    </ul>
+    <div class="tab-content">
+        @ChildContent
+    </div>
+</CascadingValue>

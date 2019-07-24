@@ -1,0 +1,32 @@
+﻿@inherits VItem
+
+<table id="@ID"       
+       class="@cssClass"
+       style="@Style">
+    <thead>
+        <tr>
+            @foreach (var columnName in ColumnNames) {
+                <th class="@HeaderColumnCssClass">@columnName</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var eTableRow in Rows) {
+            <tr>
+                @foreach (var eTableCell in eTableRow.Cells) {
+                    <td class="@ColumnCssClass">@eTableCell.Content</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@functions{
+    protected string HeaderColumnCssClass { get; set; }
+    protected string ColumnCssClass { get; set; }
+    [Parameter] List<string> ColumnNames { get; set; } = new List<string>();
+    [Parameter] List<ETableRow> Rows { get; set; } = new List<ETableRow>();
+
+    
+}

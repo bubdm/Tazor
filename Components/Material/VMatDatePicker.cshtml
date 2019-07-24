@@ -1,0 +1,8 @@
+@inherits VMatDatePickerCode
+
+<div class="form-group" style="@Style">
+    <div class="floating-label">
+        <label for="@ID">@FloatingLabelText</label>
+        <input class="form-control" id="@ID" placeholder="@PlaceHolderText" type="date"  onfocus="@OnInput"  value="@Date?.ToString("yyyy-MM-dd")" />
+    </div>
+</div>

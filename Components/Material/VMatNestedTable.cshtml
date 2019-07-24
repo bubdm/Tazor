@@ -1,0 +1,86 @@
+@using DotnetBase.Codes
+@inherits VMatNestedTableCode
+
+
+<div class="card" id="@ID"
+     style="@Style">
+    <table class="table table-hover table-sm mb-0">
+        <thead>
+        <tr>
+            <th scope="col" width="15px"></th>
+            @foreach (var eTableColumn in Columns) {
+                switch (eTableColumn.Type) {
+                    case TableColumnType.MaterialIconButton:
+                        <th scope="col" width="20px"></th>
+                        break;
+                    case TableColumnType.Text:
+                        <th scope="col">@eTableColumn.Name</th>
+                        break;
+                }
+            }
+        </tr>
+        </thead>
+        <tbody>
+            @for(int row=0;row<Rows.Count;row++) {
+                var objeto = Rows.ElementAt(row);
+                var keyValue = ObjectHelper.GetPropertyValue<string>(objeto, Key);
+                Console.WriteLine($"row {row} keyvalue {keyValue}");
+                <tr>
+                    <td style="cursor: pointer">
+                        <i class="material-icons" onclick=@(async ()=>await BtnExpandChildTableClicked(objeto))>@GetArrowIcon(keyValue)</i>
+                    </td>
+                    @for (int c = 0; c < Columns.Count; c++) {
+                        switch (Columns.ElementAt(c).Type) {
+                            case TableColumnType.Text:
+                                //var cell = eTableRow.Cells.ElementAtOrDefault(c);
+                                var cell = GetCellValue(objeto, c);
+                                if (cell != null) {
+                                    <td>@cell</td>
+                                }
+                                break;
+                            case TableColumnType.MaterialIconButton: {
+                                var coluna = c; //tem que usar essa variavel temporaria. //https://stackoverflow.com/questions/12405767/event-handler-with-lambda-expression-seems-to-have-wrong-parameter-values
+                                <td style="cursor: pointer" onclick=@(() => OnMaterialIconClicked(coluna, objeto))><i class="material-icons">@Columns.ElementAt(c).Name</i></td>
+                                break;
+                            }
+                        }
+                    }
+                </tr>
+                if (ChildRows.ContainsKey(keyValue)) {
+                     Console.WriteLine($"mostrando child table para id {keyValue} -- {ChildRows[keyValue].Count}");
+                    <tr id="lineToHide" style="@GetTrStyle(keyValue)">
+                        <td></td>
+                        <td colspan="15">
+                            <VMatTable
+                                Bordered="true"
+                                Columns="@ChildColumns"
+                                DisplayInCard="false"
+                                Rows="@ChildRows[keyValue]"
+                                PagerVisible="false"/>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <hr class="my-0 w-100">
+    <div class="card-actions align-items-center justify-content-end">
+        <span class="align-self-center mb-1 mx-1 text-muted">Linhas por página:</span>
+        <div class="dropdown">
+            <button aria-expanded="false" aria-haspopup="true" class="btn btn-outline dropdown-toggle" data-toggle="dropdown" type="button">@RowsPerPage</button>
+            <div class="dropdown-menu dropdown-menu-right menu">
+                <a class="dropdown-item active" onclick=@(() =>SetRowsPerPage(50))>50</a>
+                <a class="dropdown-item" onclick=@(() =>SetRowsPerPage(100))>100</a>
+                <a class="dropdown-item" onclick=@(() =>SetRowsPerPage(500))>500</a>
+                <a class="dropdown-item" onclick=@(() =>SetRowsPerPage(1000))>1000</a>
+            </div>
+        </div>
+        <span class="align-self-center mb-1 mr-2 text-muted">@(currentPage*RowsPerPage+1)-@(currentPage*RowsPerPage+Rows.Count) de @Count</span>
+        <a class="@previousButtonCssClass" onclick="@OnPreviousPageClicked">
+            <i class="material-icons">chevron_left</i>
+        </a>
+        <a class="@nextButtonCssClass" onclick="@OnNextPageClicked">
+            <i class="material-icons">chevron_right</i>
+        </a>
+    </div>
+</div>

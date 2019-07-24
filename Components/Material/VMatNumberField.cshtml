@@ -1,0 +1,10 @@
+@typeparam ValueType
+@inherits VMatNumberFieldCode<ValueType>
+
+<div class="form-group" style="@Style" id="@ID">
+    <div class="floating-label">
+        <label for="exampleFloatingLabel1">@FloatingLabelText</label>
+        <input aria-describedby="exampleFloatingLabel1Help" class="form-control" id="exampleFloatingLabel1" placeholder="@PlaceHolderText" type="number" onchange="@HangleTextChange"  value="@text" />
+        <small id="exampleFloatingLabel1Help" class="form-text text-muted">@UnderText</small>
+    </div>
+</div>

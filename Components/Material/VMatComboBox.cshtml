@@ -1,0 +1,24 @@
+﻿@typeparam ItemType
+@typeparam ValueType
+@using DotnetBase.Codes
+@inherits VMatComboBoxCode<ItemType,ValueType> 
+
+
+<div class="form-group" id="@ID" style="@Style">
+    <label for="exampleFormControlSelect1">@FloatingLabelText</label>
+    <select class="form-control" id="exampleFormControlSelect1" onchange="@OnSelectChanged" value="@SelectedValue" style="-webkit-appearance:none">
+        @if (IsFirstItemNull) {
+            <option value=""></option>
+        }
+        @if (Items != null) {
+            @foreach (object obj in Items) {
+                 <option value="@ReflectionHelper.GetPropertyValue(obj, ValueField)">@ReflectionHelper.GetPropertyValue(obj, TextField)</option>
+             }
+        }
+        @if (ComboItems != null) {
+            @foreach (EComboBoxItem eItem in ComboItems) {
+                 <option value="@eItem.Value">@eItem.Text</option>
+             }
+        }
+    </select>
+  </div>

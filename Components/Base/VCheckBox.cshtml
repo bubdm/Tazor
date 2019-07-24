@@ -1,0 +1,25 @@
+@inherits VItem
+
+<VRectangle
+    ref="rect"
+    id="@ID"
+    Width="100"
+    Height="20"
+    Color="green"
+>         
+</VRectangle>
+
+
+@functions {
+    VRectangle rect;
+
+
+        //=================================FUNCTIONS BELOW=================================
+
+    #region OnParametersSet
+    protected override async Task OnParametersSetAsync() {
+        await base.OnParametersSetAsync();
+        //Style = Helper.ConvertDictToCssStyle(StyleDict);
+    }
+    #endregion
+}

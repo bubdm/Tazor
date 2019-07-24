@@ -1,0 +1,11 @@
+﻿@inherits VMatTextFieldCode
+
+<div class="form-group" style="@Style" id="@ID">
+    <div class="floating-label">
+        <label for="exampleFloatingLabel1">@FloatingLabelText</label>
+        <input aria-describedby="exampleFloatingLabel1Help" class="form-control" id="exampleFloatingLabel1" placeholder="@PlaceHolderText" type="@Type" onchange="@HangleTextChange"  value="@Text" readonly="@ReadOnly"/>
+        <small id="exampleFloatingLabel1Help" class="form-text text-muted">@UnderText</small>
+    </div>
+</div>
+
+

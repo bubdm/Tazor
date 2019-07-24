@@ -1,0 +1,25 @@
+﻿@inherits VItem
+
+<div  id="@ID" 
+     class="dropdown" 
+     style="@Style">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        @Label  
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        @foreach (EComboBoxItem eItem in Items) {
+            <a class="dropdown-item" href="#">@eItem.Text</a>
+        }
+    </div>
+</div>
+
+@functions{
+    [Parameter] protected List<EComboBoxItem> Items { get; set; }
+    [Parameter] protected string Label { get; set; }
+
+    #region OnParametersSet
+    protected override async Task OnParametersSetAsync() {
+        await base.OnParametersSetAsync();
+    }
+    #endregion
+}

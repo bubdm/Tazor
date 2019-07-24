@@ -1,0 +1,15 @@
+﻿@inherits VMatToolBarCode
+
+<nav class="navbar navbar-dark" style="background-color: #37474F;">
+    <div class="form-inline">
+        @foreach (EToolbarItem eToolbarItem in Items) {
+            <button class="btn btn-outline-secondary" style="color: white" onclick=@(async () => await OnItemClicked.Invoke(eToolbarItem))>
+                @if (!string.IsNullOrEmpty(eToolbarItem.IconName)) {
+                    <i class="material-icons" style="margin-right: 5px">@eToolbarItem.IconName</i>
+                }
+                @eToolbarItem.Text
+            </button>
+        }
+    </div>
+    <a class="navbar-brand" href="#">@Title</a>
+</nav>

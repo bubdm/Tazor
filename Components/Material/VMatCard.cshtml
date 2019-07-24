@@ -1,0 +1,15 @@
+﻿@inherits VMatCardCode
+
+<div class="card" id="@ID" style="@Style">
+    <div class="card-body">
+        @if (!string.IsNullOrEmpty(Title)) { 
+            <h5 class="card-title">@Title</h5>
+        }
+        @if (!string.IsNullOrEmpty(SubTitle)) {
+            <h6 class="card-subtitle mb-2 text-muted">@SubTitle</h6>
+        }
+        @ChildContent  
+        
+    </div>
+</div>
+

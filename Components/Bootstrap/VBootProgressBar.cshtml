@@ -1,0 +1,20 @@
+﻿@inherits VProgressBar
+
+<style>
+    #@(ID+"ValueFrame") {
+       transition: width .9s ease;
+        transition-property: width;
+        transition-duration: 0.9s;
+        transition-timing-function: ease;
+        transition-delay: 0s;
+    }
+</style>
+
+@functions{
+    protected override void OnInit() {
+        base.OnInit();
+        FrameBackgroundColor = "#E9ECEF";
+        ValueBackgroundColor = "#007BFF";
+        Height = "10px";
+    }
+}

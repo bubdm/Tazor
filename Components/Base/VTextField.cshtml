@@ -1,0 +1,22 @@
+﻿@inherits VItem
+
+<input id="@ID"
+       class="@cssClass"
+       placeholder="@PlaceHolderText"
+       style="@Style" />
+
+
+@functions{
+    [Parameter] protected string PlaceHolderText { get; set; }
+    [Parameter] protected string InputCssClass { get; set; }
+    [Parameter] protected string LabelCssClass { get; set; }
+    [Parameter] protected InputType InputType { get; set; } = InputType.Text;
+
+    #region OnParametersSet
+    protected override void OnParametersSet() {
+        base.OnParametersSet();
+        //if (!string.IsNullOrEmpty(BorderColor)) cssDict.Add(CssHelper.BorderColor, BorderColor);
+        Style = Helper.ConvertDictToCssStyle(StyleDict);
+    }
+    #endregion
+}

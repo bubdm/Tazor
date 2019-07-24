@@ -1,0 +1,6 @@
+@inherits VMatCheckBoxCode
+
+<div class="custom-control custom-checkbox" style="@Style" id="@ID">
+    <input type="checkbox" class="custom-control-input" id="@(ID+"customCheck1")" checked="@Checked" onchange="@CheckedChangedHandled"/>
+    <label class="custom-control-label" for="@(ID+"customCheck1")">@Text</label>
+</div>

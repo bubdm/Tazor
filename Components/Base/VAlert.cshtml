@@ -1,0 +1,37 @@
+﻿@inherits VItem
+
+<div id="@ID"
+     class="@cssClass"
+     style="@Style">
+    <VRectangle ID="@(ID+"InternalRectangle")"
+                Height="@Height"
+                OuterStyleDict="@RectStyleDict">
+        <VLabel ID="@(ID+"InternalLabel")"
+                OuterStyleDict="@LabelStyleDict"
+                Text="@Text"></VLabel>
+    </VRectangle>
+
+</div>
+
+
+@functions{
+
+    [Parameter] protected AlertType AlertType { get; set; }
+    [Parameter] protected string Text { get; set; }
+    protected Dictionary<string, string> RectStyleDict { get; set; } = new Dictionary<string, string>();
+    protected Dictionary<string, string> LabelStyleDict { get; set; } = new Dictionary<string, string>();
+
+    //=================================FUNCTIONS BELOW=================================
+
+    protected override void OnInit() {
+        base.OnInit();
+        Height = "50px";
+    }
+
+    #region OnParametersSet
+    protected override void OnParametersSet() {
+        base.OnParametersSet();
+        Style = Helper.ConvertDictToCssStyle(StyleDict);
+    }
+    #endregion
+}

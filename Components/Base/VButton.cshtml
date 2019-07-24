@@ -1,0 +1,22 @@
+@inherits VButtonCode
+
+@* <button id="@ID" *@
+@*         class="@cssClass" *@
+@*         style="@Style" *@
+@*         onclick="@_BtnClicked" *@
+@*         @if (!string.IsNullOrEmpty(@Tooltip)) { *@
+@*             data-toggle="tooltip" data-placement="@_tooltipPlacement" title="@Tooltip" *@
+@*         } *@
+@* > *@
+@*     @if (!string.IsNullOrEmpty(IconCssClass)) { *@
+@*         <i class="@IconCssClass">@IconName</i> *@
+@*     } *@
+@*     @Text *@
+@* </button> *@
+
+
+<style>
+    #@ID:hover {
+         background-color: @HoverColor;
+    }
+</style>

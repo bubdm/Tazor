@@ -1,0 +1,39 @@
+@inherits VItem
+
+<span id="@ID"
+      class="@cssClass"
+      style="@Style">
+    @ChildContent
+</span>
+
+
+<style>
+    #@ID:hover { background-color: @HoverColor; }
+
+    #@ID {
+        height: @(Width + "px");
+        border-radius: 50%;
+        display: inline-block;
+        width: @(Width + "px");
+        background-color: @BackgroundColor;
+    }
+</style>
+
+@functions {
+
+    [Parameter]
+    RenderFragment ChildContent { get; set; }
+
+    //        protected override void OnAfterRender() {
+    //                Console.WriteLine($"setou largura no circulo: {Width}");
+    //        }
+
+    //=================================FUNCTIONS BELOW=================================
+
+    #region OnParametersSet
+    protected override async Task OnParametersSetAsync() {
+        await base.OnParametersSetAsync();
+        //Style = Helper.ConvertDictToCssStyle(StyleDict);
+    }
+    #endregion
+}
