@@ -1,7 +1,25 @@
-﻿# Explicacoes
-* Aparentemente a mudança do width do vrectangle tem que ser alterado na página que utiliza o VRectange. Assim, para que a largura seja alterada no browser, o width do VRectangle no Teste.cshtml tem que mudar
-* Precisei adicionar o nuget System.Dynamic.Runtime e  Microsoft.CSharp para o keyword dynamic funcionar 
+﻿# TAZOR - Material Design UI Components for Blazor
+ This repository contains all basic ui components written in Blazor. Here you'll find the following components:
+- Alert
+- Auto-complete
+- Button
+- Card
+- Checkbox
+- ComboBox
+- ConfirmDialog
+- DatePicker
+- DropDownButton
+- NestedTable
+- NumberField
+- ProgressBar
+- RadioButton
+- SnackBar
+- Switch
+- Tab
+- Table
+- TextArea
+- TextField
+- ToolBar
 
 
-#DIMENSION SERVICE
-* sempre deve setar um valor do item via item.SetInternal...
+
